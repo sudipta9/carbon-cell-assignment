@@ -113,7 +113,7 @@ export const authRouter: Router = (() => {
         ResponseStatus.Failed,
         'Invalid email or password',
         null,
-        StatusCodes.BAD_REQUEST
+        StatusCodes.FORBIDDEN
       );
       handleServiceResponse(serviceResponse, res);
       return;
@@ -126,7 +126,7 @@ export const authRouter: Router = (() => {
         ResponseStatus.Failed,
         'Invalid email or password',
         null,
-        StatusCodes.BAD_REQUEST
+        StatusCodes.FORBIDDEN
       );
       handleServiceResponse(serviceResponse, res);
       return;
@@ -176,7 +176,7 @@ export const authRouter: Router = (() => {
     },
   });
 
-  router.post('/sign-out', validateRequest(SignOutRequest), authValidation, async (req: Request, res: Response) => {
+  router.post('/sign-out', authValidation, validateRequest(SignOutRequest), async (req: Request, res: Response) => {
     // @ts-expect-error user is added to request object
     const user = req.user;
 

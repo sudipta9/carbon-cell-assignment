@@ -9,10 +9,12 @@ export const SignInRequest = z.object({
       email: z
         .string({
           required_error: 'Email is required',
+          description: 'Email of the user',
         })
         .email(),
       password: z.string({
         required_error: 'Password is required',
+        description: 'Password of the user',
       }),
     },
     {
@@ -27,13 +29,16 @@ export const SignUpRequest = z.object({
       email: z
         .string({
           required_error: 'Email is required',
+          description: 'Email of the user',
         })
         .email(),
       name: z.string({
         required_error: 'Name is required',
+        description: 'Name of the user',
       }),
       password: z.string({
         required_error: 'Password is required',
+        description: 'Password of the user',
       }),
     },
     {
@@ -47,6 +52,7 @@ export const refreshTokenRequest = z.object({
     {
       refreshToken: z.string({
         required_error: 'Refresh token is required',
+        description: 'JWT refresh token',
       }),
     },
     {
@@ -61,6 +67,7 @@ export const SignOutRequest = z.object({
       authorization: z
         .string({
           required_error: 'Authorization header is required',
+          description: 'Bearer token for authentication',
         })
         .includes('Bearer ', {
           message: 'Authorization header must be in the format "Bearer <token>"',

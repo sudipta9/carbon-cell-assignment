@@ -12,6 +12,8 @@ import { env } from '@/common/utils/envConfig';
 import { openAPIRouter } from '@/docs/openAPIRouter';
 
 import { authRouter } from './api/auth/authRouter';
+import { dataRouter } from './api/data/dataRouter';
+import { privateDataRouter } from './api/privateData/privateDataRoute';
 
 const logger = pino({ name: 'server start' });
 const app: Express = express();
@@ -31,7 +33,8 @@ app.use(requestLogger());
 // Routes
 app.use('/health-check', healthCheckRouter);
 app.use('/auth', authRouter);
-// app.use('/users', userRouter);
+app.use('/data', dataRouter);
+app.use('/private-data', privateDataRouter);
 
 // Swagger UI
 app.use(openAPIRouter);
